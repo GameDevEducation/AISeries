@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class DetectableTarget : MonoBehaviour
 {
+    [SerializeField] bool LocalTargetManagerOnly = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        DetectableTargetManager.Instance.Register(this);
+        if (!LocalTargetManagerOnly)
+            DetectableTargetManager.Instance.Register(this);
     }
 
     // Update is called once per frame
@@ -18,7 +21,7 @@ public class DetectableTarget : MonoBehaviour
 
     void OnDestroy()
     {
-        if (DetectableTargetManager.Instance != null)
+        if (!LocalTargetManagerOnly && DetectableTargetManager.Instance != null)
             DetectableTargetManager.Instance.Deregister(this);
     }
 }

@@ -5,6 +5,8 @@ using UnityEditor;
 
 public class AIDebuggerWindow : EditorWindow
 {
+    Vector2 ScrollPosition;
+
     [MenuItem("AI/Debugger")]
     static void Init()
     {
@@ -32,6 +34,8 @@ public class AIDebuggerWindow : EditorWindow
             return;
         }
 
+        ScrollPosition = EditorGUILayout.BeginScrollView(ScrollPosition, GUILayout.ExpandHeight(true));
+
         foreach(var kvp in AIDebugger.Instance.TrackedAIs)
         {
             AIDebugger.TrackedAI trackedAI = kvp.Value;
@@ -52,5 +56,7 @@ public class AIDebuggerWindow : EditorWindow
 
             EditorGUILayout.EndFoldoutHeaderGroup();
         }
+
+        EditorGUILayout.EndScrollView();
     }
 }

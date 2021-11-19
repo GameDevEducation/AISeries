@@ -2,26 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyAI))]
+[RequireComponent(typeof(BaseAI))]
 public class VisionSensor : MonoBehaviour
 {
     [SerializeField] LayerMask DetectionMask = ~0;
 
-    EnemyAI LinkedAI;
+    BaseAI LinkedAI;
+    LocalDetectableTargetManager TargetManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        LinkedAI = GetComponent<EnemyAI>();
+        LinkedAI = GetComponent<BaseAI>();
+        TargetManager = GetComponent<LocalDetectableTargetManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // check all candidates
-        for (int index = 0; index < DetectableTargetManager.Instance.AllTargets.Count; ++index)
+        List<DetectableTarget> targets = TargetManager != null ? TargetManager.AllTargets : DetectableTargetManager.Instance.AllTargets;
+
+        for (int index = 0; index < targets.Count; ++index)
         {
-            var candidateTarget = DetectableTargetManager.Instance.AllTargets[index];
+            var candidateTarget = targets[index];
 
             // skip if the candidate is ourselves
             if (candidateTarget.gameObject == gameObject)

@@ -715,7 +715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9145495465095373987}
-  - component: {fileID: 179596584}
+  - component: {fileID: 8553329154807342935}
   - component: {fileID: 179596585}
   - component: {fileID: 179596587}
   - component: {fileID: 179596588}
@@ -732,6 +732,8 @@ GameObject:
   - component: {fileID: 2158662583822597647}
   - component: {fileID: -3691712661447929355}
   - component: {fileID: 1860952227844033776}
+  - component: {fileID: -1060987119438623725}
+  - component: {fileID: 2773244131267925160}
   m_Layer: 7
   m_Name: Villager
   m_TagString: Character
@@ -757,7 +759,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &179596584
+--- !u!114 &8553329154807342935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -766,12 +768,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8223693791530248982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0cac30ce4fc8d409c024a6bdb1890e, type: 3}
+  m_Script: {fileID: 11500000, guid: c88899887656d3b459bffdd5758a7336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FeedbackDisplay: {fileID: 1986967683}
-  _VisionConeAngle: 70
-  _VisionConeRange: 20
+  _VisionConeAngle: 60
+  _VisionConeRange: 30
   _VisionConeColour: {r: 1, g: 0, b: 0, a: 0.25}
   _HearingRange: 20
   _HearingRangeColour: {r: 1, g: 1, b: 0, a: 0.25}
@@ -1046,6 +1048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c3d48a929cc434a97fd507934f0589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinGatherPriority: 25
+  MaxGatherPriority: 100
 --- !u!114 &-3691712661447929355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1070,3 +1074,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97746c731d0b58c4eb286a3ef6d38026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitialState: 0
+  CollectionTime: 5
+  StorageTime: 5
+--- !u!114 &-1060987119438623725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223693791530248982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7eafe9041511d940a7cf10959fcf7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &2773244131267925160
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223693791530248982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}

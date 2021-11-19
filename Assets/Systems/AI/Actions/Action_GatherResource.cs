@@ -70,14 +70,6 @@ public class Action_GatherResource : BaseFSMAction<Action_GatherResource.EState>
     {
         switch (State)
         {
-            case EState.PickResource:
-                if (Target == null)
-                {
-                    Debug.LogError($"{gameObject.name} failed to pick resource. Picking new target");
-                    Target = LinkedAIState.Home.GetGatherTarget(LinkedBrain);
-                }
-                break;
-
             case EState.CollectResource:
             case EState.StoreResource:
                 ActionTimeRemaining -= Time.deltaTime;
@@ -105,6 +97,8 @@ public class Action_GatherResource : BaseFSMAction<Action_GatherResource.EState>
             case EState.PickResource:
                 if (Target != null)
                     return EState.MoveToResource;
+                else
+                    HasFinished = true;
                 break;
 
             case EState.MoveToResource:
@@ -116,7 +110,10 @@ public class Action_GatherResource : BaseFSMAction<Action_GatherResource.EState>
 
             case EState.CollectResource:
                 if (ActionTimeRemaining <= 0f)
+                {
+                    LinkedAIState.SetAmountCarried(Target.AvailableAmount);
                     return EState.ReturnHome;
+                }
                 break;
 
             case EState.ReturnHome:
@@ -126,7 +123,11 @@ public class Action_GatherResource : BaseFSMAction<Action_GatherResource.EState>
 
             case EState.StoreResource:
                 if (ActionTimeRemaining <= 0f)
+                {
+                    LinkedAIState.Home.StoreResource(Target.Type, LinkedAIState.AmountCarried);
+                    LinkedAIState.SetAmountCarried(0);
                     HasFinished = true;
+                }
                 break;
         }
 

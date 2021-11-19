@@ -89,7 +89,7 @@ MonoBehaviour:
   LimitToHeightRange: 1
   MinHeight: 15
   MaxHeight: 15.2
-  TargetDensity: 0.1
+  TargetDensity: 0.2
   MaxSpawnCount: 350
   NoiseScale: {x: 0.015625, y: 0.015625}
   NoiseThreshold: 0.5

@@ -11,6 +11,7 @@ public class AIState : MonoBehaviour
 
     public Village Home { get; private set; } = null;
     public float Fear { get; private set; } = 0f;
+    public int AmountCarried { get; private set; } = 0;
 
     public void SetHome(Village _Home)
     {
@@ -40,5 +41,10 @@ public class AIState : MonoBehaviour
         }
         else
             Fear = Mathf.Clamp01(Fear - FearDecayRate * Time.deltaTime);
+    }
+
+    public void SetAmountCarried(int amount)
+    {
+        AmountCarried = amount;
     }
 }

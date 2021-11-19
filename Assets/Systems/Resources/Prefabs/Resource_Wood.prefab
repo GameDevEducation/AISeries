@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8070635081183023093}
   - component: {fileID: -6166337848057763679}
+  - component: {fileID: 4178207124122238030}
   m_Layer: 6
   m_Name: Resource_Wood
   m_TagString: Resource
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Type: 2
+--- !u!114 &4178207124122238030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070635081183022859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0dc06e88ac326c4f8c2c6ef550cace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalTargetManagerOnly: 1
 --- !u!1 &8070635081476573573
 GameObject:
   m_ObjectHideFlags: 0

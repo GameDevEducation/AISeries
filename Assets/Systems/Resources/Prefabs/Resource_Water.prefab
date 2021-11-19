@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8985261246974238258}
   - component: {fileID: -5165173187634447543}
+  - component: {fileID: -1420042256759837208}
   m_Layer: 6
   m_Name: Resource_Water
   m_TagString: Resource
@@ -47,6 +48,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Type: 1
+--- !u!114 &-1420042256759837208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327932317531975973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0dc06e88ac326c4f8c2c6ef550cace2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalTargetManagerOnly: 1
 --- !u!1 &4124881953435089061
 GameObject:
   m_ObjectHideFlags: 0
