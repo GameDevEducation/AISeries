@@ -69,6 +69,7 @@ public abstract class BaseFSMAction<T> : BaseAction
     public sealed override void Begin()
     {
         State = InitialState;
+        HasFinished = false;
         StateMachine[State].OnEnter();        
     }
 

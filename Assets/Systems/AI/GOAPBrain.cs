@@ -11,7 +11,7 @@ public class GOAPBrain : MonoBehaviour
     BaseAction ActiveAction;
 
     public string DebugInfo_ActiveGoal => ActiveGoal != null ? ActiveGoal.GetType().Name : "None";
-    public string DebugInfo_ActiveAction => ActiveAction != null ? ActiveAction.GetType().Name : "None";
+    public string DebugInfo_ActiveAction => ActiveAction != null ? $"{ActiveAction.GetType().Name}{ActiveAction.GetDebugInfo()}" : "None";
     public int NumGoals => Goals.Length;
 
     public string DebugInfo_ForGoal(int index)
@@ -46,7 +46,17 @@ public class GOAPBrain : MonoBehaviour
         RefreshPlan();
 
         if (ActiveGoal != null)
+        {
             ActiveGoal.Tick();
+
+            // if action finished - cleanup the goal
+            if (ActiveAction.HasFinished)
+            {
+                ActiveGoal.GoToSleep();
+                ActiveGoal = null;
+                ActiveAction = null;
+            }
+        }
     }
 
     void RefreshPlan()

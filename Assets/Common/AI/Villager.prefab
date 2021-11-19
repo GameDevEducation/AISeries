@@ -728,6 +728,10 @@ GameObject:
   - component: {fileID: 263680296}
   - component: {fileID: 263680297}
   - component: {fileID: 263680298}
+  - component: {fileID: -1260092542101646301}
+  - component: {fileID: 2158662583822597647}
+  - component: {fileID: -3691712661447929355}
+  - component: {fileID: 1860952227844033776}
   m_Layer: 7
   m_Name: Villager
   m_TagString: Character
@@ -900,7 +904,7 @@ MonoBehaviour:
   DEBUG_MoveTarget: {fileID: 0}
   DEBUG_ShowHeading: 1
   PathdataUID: Humanoid_1x1
-  UseSynchronous: 1
+  UseSynchronous: 0
   ArrivalDistance: 5
   ArrivalSpeedScale:
     serializedVersion: 2
@@ -945,10 +949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c1a2a127be00e4ab15d8340b960543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FearStartRange: 50
+  FearStartDistance: 75
+  FearMultipliedDistance: 50
   FearBuildRate: 0.01
-  FearDecayRate: 0.02
-  FearDistanceMultiplier: 50
+  FearDecayRate: 0.04
 --- !u!114 &263680299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,5 +1018,55 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0517f5faa842f644882e8d97e571a36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1260092542101646301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223693791530248982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa00fbfdfed6bd4883a8d86b469fdd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PanicStartThreshold: 0.8
+  PanicEndThreshold: 0.2
+--- !u!114 &2158662583822597647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223693791530248982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c3d48a929cc434a97fd507934f0589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3691712661447929355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223693791530248982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faaf5512630201d4f98b70c19efbc9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1860952227844033776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8223693791530248982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97746c731d0b58c4eb286a3ef6d38026, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
