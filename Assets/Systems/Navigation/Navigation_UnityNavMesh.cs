@@ -56,4 +56,24 @@ public class Navigation_UnityNavMesh : BaseNavigation
                 Debug.DrawLine(transform.position + Vector3.up, LinkedAgent.steeringTarget, Color.green);
         }
     }
+
+    public override void StopMovement()
+    {
+        LinkedAgent.ResetPath();
+    }
+
+    public override bool FindNearestPoint(Vector3 searchPos, float range, out Vector3 foundPos)
+    {
+        NavMeshHit hitResult;
+        if (NavMesh.SamplePosition(searchPos, out hitResult, range, NavMesh.AllAreas))
+        {
+            foundPos = hitResult.position;
+            return true;
+        }
+
+        foundPos = searchPos;
+
+        return false;
+    }
+
 }

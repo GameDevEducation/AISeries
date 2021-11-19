@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif // UNITY_EDITOR
 
 public class ObjectPlacer_Random : BaseObjectPlacer
 {
@@ -21,8 +24,14 @@ public class ObjectPlacer_Random : BaseObjectPlacer
             Vector3 spawnLocation = candidateLocations[randomLocationIndex];
             candidateLocations.RemoveAt(randomLocationIndex);
 
+#if UNITY_EDITOR
+            GameObject newObject = PrefabUtility.InstantiatePrefab(Prefab, objectRoot) as GameObject;
+            newObject.transform.position = spawnLocation;
+            Undo.RegisterCreatedObjectUndo(newObject, "Spawn object");
+#else
             // instantiate the prefab
-            GameObject newObject = Instantiate(Prefab, spawnLocation, Quaternion.identity, objectRoot);
+            Instantiate(Prefab, spawnLocation, Quaternion.identity, objectRoot);
+#endif
         }
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BaseObjectPlacer : MonoBehaviour
 {
+    [SerializeField] protected bool LimitToHeightRange = false;
+    [SerializeField] protected float MinHeight = 0f;
+    [SerializeField] protected float MaxHeight = 0f;
+
     protected List<Vector3> GetAllLocationsForBiome(int mapResolution, float[,] heightMap, Vector3 heightmapScale, byte[,] biomeMap, int biomeIndex)
     {
         List<Vector3> locations = new List<Vector3>(mapResolution * mapResolution / 10);
@@ -15,7 +19,13 @@ public class BaseObjectPlacer : MonoBehaviour
                 if (biomeMap[x, y] != biomeIndex)
                     continue;
 
-                locations.Add(new Vector3(y * heightmapScale.z, heightMap[x, y] * heightmapScale.y, x * heightmapScale.x));
+                float height = heightMap[x, y] * heightmapScale.y;
+
+                // outside of height range
+                if (LimitToHeightRange && (height < MinHeight || height > MaxHeight))
+                    continue;
+
+                locations.Add(new Vector3(y * heightmapScale.z, height, x * heightmapScale.x));
             }
         }
 

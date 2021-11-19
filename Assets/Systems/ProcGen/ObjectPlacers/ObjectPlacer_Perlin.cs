@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif // UNITY_EDITOR
 
 public class ObjectPlacer_Perlin : BaseObjectPlacer
 {
@@ -28,7 +31,13 @@ public class ObjectPlacer_Perlin : BaseObjectPlacer
                 if (noiseValue < NoiseThreshold)
                     continue;
 
-                locations.Add(new Vector3(y * heightmapScale.z, heightMap[x, y] * heightmapScale.y, x * heightmapScale.x));
+                float height = heightMap[x, y] * heightmapScale.y;
+
+                // outside of height range
+                if (LimitToHeightRange && (height < MinHeight || height > MaxHeight))
+                    continue;
+
+                locations.Add(new Vector3(y * heightmapScale.z, height, x * heightmapScale.x));
             }
         }
 
@@ -46,10 +55,16 @@ public class ObjectPlacer_Perlin : BaseObjectPlacer
             // pick a random location to spawn at
             int randomLocationIndex = Random.Range(0, candidateLocations.Count);
             Vector3 spawnLocation = candidateLocations[randomLocationIndex];
-            candidateLocations.RemoveAt(randomLocationIndex);
+            candidateLocations.RemoveAt(randomLocationIndex);           
 
+#if UNITY_EDITOR
+            GameObject newObject = PrefabUtility.InstantiatePrefab(Prefab, objectRoot) as GameObject;
+            newObject.transform.position = spawnLocation;
+            Undo.RegisterCreatedObjectUndo(newObject, "Spawn object");
+#else
             // instantiate the prefab
-            GameObject newObject = Instantiate(Prefab, spawnLocation, Quaternion.identity, objectRoot);
+            Instantiate(Prefab, spawnLocation, Quaternion.identity, objectRoot);
+#endif
         }
     }
 }

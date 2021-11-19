@@ -27,6 +27,19 @@ public abstract class BaseNavigation : MonoBehaviour
     public EState State { get; private set; } = EState.Idle;
 
     public bool IsFindingOrFollowingPath => State == EState.FindingPath || State == EState.FollowingPath;
+    public bool IsAtDestination
+    {
+        get
+        {
+            if (State != EState.Idle)
+                return false;
+
+            Vector3 vecToDestination = Destination - transform.position;
+            vecToDestination.y = 0f;
+
+            return vecToDestination.magnitude <= DestinationReachedThreshold;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +83,10 @@ public abstract class BaseNavigation : MonoBehaviour
 
         return RequestPath();
     }
+
+    public abstract void StopMovement();
+
+    public abstract bool FindNearestPoint(Vector3 searchPos, float range, out Vector3 foundPos);
 
     protected abstract void Initialise();
 

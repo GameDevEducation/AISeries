@@ -166,4 +166,26 @@ public class Navigation_CustomPathfinding : BaseNavigation
         // generate steering command
         LinkedRB.velocity = movementVector * targetSpeed;
     }
+
+    public override void StopMovement()
+    {
+        LinkedRB.velocity = Vector3.zero;
+    }
+
+    public override bool FindNearestPoint(Vector3 searchPos, float range, out Vector3 foundPos)
+    {
+        var pathdata = PathdataManager.Instance.GetPathdata(PathdataUID);
+
+        var foundNode = pathdata.GetNode(searchPos);
+
+        if (foundNode != null && foundNode.IsWalkable)
+        {
+            foundPos = foundNode.WorldPos;
+            return true;
+        }
+
+        foundPos = searchPos;
+
+        return false;
+    }    
 }
