@@ -27,25 +27,25 @@ public class AIDebuggerWindow : EditorWindow
             return;
         }
 
-        // foreach(var kvp in AIDebugger.Instance.TrackedAIs)
-        // {
-        //     AIDebugger.TrackedAI trackedAI = kvp.Value;
-        //     GOAPBrain brain = kvp.Key;
+        foreach(var kvp in AIDebugger.Instance.TrackedAIs)
+        {
+            AIDebugger.TrackedAI trackedAI = kvp.Value;
+            GOAPBrain brain = kvp.Key;
 
-        //     trackedAI.IsExpanded = EditorGUILayout.BeginFoldoutHeaderGroup(trackedAI.IsExpanded, trackedAI.Name);
+            trackedAI.IsExpanded = EditorGUILayout.BeginFoldoutHeaderGroup(trackedAI.IsExpanded, trackedAI.Name);
 
-        //     if (trackedAI.IsExpanded)
-        //     {
-        //         GUILayout.Label($"Active Goal: {brain.DebugInfo_ActiveGoal}");
-        //         GUILayout.Label($"Active Action: {brain.DebugInfo_ActiveAction}");
+            if (trackedAI.IsExpanded)
+            {
+                GUILayout.Label($"Active Goal: {brain.DebugInfo_ActiveGoal}");
+                GUILayout.Label($"Active Action: {brain.DebugInfo_ActiveAction}");
 
-        //         for (int goalIndex = 0; goalIndex < brain.NumGoals; ++goalIndex)
-        //         {
-        //             GUILayout.Label(brain.DebugInfo_ForGoal(goalIndex));
-        //         }
-        //     }
+                for (int goalIndex = 0; goalIndex < brain.NumGoals; ++goalIndex)
+                {
+                    GUILayout.Label(brain.DebugInfo_ForGoal(goalIndex));
+                }
+            }
 
-        //     EditorGUILayout.EndFoldoutHeaderGroup();
-        // }
+            EditorGUILayout.EndFoldoutHeaderGroup();
+        }
     }
 }

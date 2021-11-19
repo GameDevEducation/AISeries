@@ -12,7 +12,7 @@ public class AIDebugger : MonoBehaviour
         public bool IsExpanded;
     }
 
-    // public Dictionary<GOAPBrain, TrackedAI> TrackedAIs { get; private set; } = new Dictionary<GOAPBrain, TrackedAI>();
+    public Dictionary<GOAPBrain, TrackedAI> TrackedAIs { get; private set; } = new Dictionary<GOAPBrain, TrackedAI>();
 
     void Awake()
     {
@@ -37,13 +37,13 @@ public class AIDebugger : MonoBehaviour
         
     }
 
-    // public void Register(GOAPBrain brain)
-    // {
-    //     TrackedAIs[brain] = new TrackedAI() { Name = brain.gameObject.name };
-    // }
+    public void Register(GOAPBrain brain)
+    {
+        TrackedAIs[brain] = new TrackedAI() { Name = brain.gameObject.name };
+    }
 
-    // public void Deregister(GOAPBrain brain)
-    // {
-    //     TrackedAIs.Remove(brain);
-    // }    
+    public void Deregister(GOAPBrain brain)
+    {
+        TrackedAIs.Remove(brain);
+    }    
 }
