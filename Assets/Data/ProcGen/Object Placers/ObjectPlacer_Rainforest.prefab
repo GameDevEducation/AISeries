@@ -50,7 +50,7 @@ MonoBehaviour:
   MinHeight: 15
   MaxHeight: 200
   TargetDensity: 0.1
-  MaxSpawnCount: 500
+  MaxSpawnCount: 350
   Prefab: {fileID: 8070635081183022859, guid: 73a7e2a3e0c079b498becc0c486bee6b, type: 3}
 --- !u!114 &304842484480361428
 MonoBehaviour:
@@ -68,7 +68,7 @@ MonoBehaviour:
   MinHeight: 15
   MaxHeight: 200
   TargetDensity: 0.1
-  MaxSpawnCount: 500
+  MaxSpawnCount: 350
   Prefab: {fileID: 7499450935267296699, guid: 7a92a281698b86c42917ebf251601f49, type: 3}
 --- !u!114 &6290434781625073577
 MonoBehaviour:
@@ -84,9 +84,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LimitToHeightRange: 1
   MinHeight: 15
-  MaxHeight: 15.1
+  MaxHeight: 15.2
   TargetDensity: 0.1
-  MaxSpawnCount: 500
+  MaxSpawnCount: 350
   NoiseScale: {x: 0.015625, y: 0.015625}
   NoiseThreshold: 0.5
   Prefab: {fileID: 327932317531975973, guid: 1e17ccf4d78ab1646a34c17ba5ef9058, type: 3}

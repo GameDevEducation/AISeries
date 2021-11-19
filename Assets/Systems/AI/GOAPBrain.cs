@@ -16,9 +16,7 @@ public class GOAPBrain : MonoBehaviour
 
     public string DebugInfo_ForGoal(int index)
     {
-        var goal = Goals[index];
-
-        return $"{goal.GetType().Name}: Priority={goal.Priority} CanRun={goal.CanRun}";
+        return Goals[index].GetDebugInfo();
     }
 
     void Awake()

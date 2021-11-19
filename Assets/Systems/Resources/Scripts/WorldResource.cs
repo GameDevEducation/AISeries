@@ -16,7 +16,7 @@ public class WorldResource : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ResourceTracker.Instance.RegisterResource(this);
     }
 
     // Update is called once per frame

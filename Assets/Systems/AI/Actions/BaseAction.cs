@@ -5,10 +5,12 @@ using UnityEngine;
 public abstract class BaseAction : MonoBehaviour
 {
     protected BaseNavigation Navigation;
+    protected AIState LinkedAIState;
 
     void Awake()
     {
         Navigation = GetComponent<BaseNavigation>();
+        LinkedAIState = GetComponent<AIState>();
     }
 
     void Start()

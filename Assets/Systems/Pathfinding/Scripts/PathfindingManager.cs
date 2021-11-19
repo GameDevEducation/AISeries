@@ -445,7 +445,7 @@ public class PathfindingManager : MonoBehaviour
                     bestNode = context.LinkedPathdata.GetNode(context.GetParentID(bestNode));
                 }
 
-                Debug.Log("Path found in " + context.NumIterations + " iterations");
+                //Debug.Log("Path found in " + context.NumIterations + " iterations");
                 return EPathfindResult.PathFound;
             }
 

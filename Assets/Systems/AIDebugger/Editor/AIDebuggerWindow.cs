@@ -11,6 +11,11 @@ public class AIDebuggerWindow : EditorWindow
         EditorWindow.GetWindow<AIDebuggerWindow>().Show();
     }
 
+    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+
     void OnGUI()
     {        
         // early out if not playing

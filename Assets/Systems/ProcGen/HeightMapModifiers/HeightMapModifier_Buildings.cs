@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif // UNITY_EDITOR
 
 [System.Serializable]
 public class BuildingConfig
@@ -15,7 +18,7 @@ public class HeightMapModifier_Buildings : BaseHeightMapModifier
 {
     [SerializeField] List<BuildingConfig> Buildings;
 
-    protected void SpawnBuilding(BuildingConfig building, int spawnX, int spawnY,
+    protected void SpawnBuilding(BuildingConfig building, string name, int spawnX, int spawnY,
                                  int mapResolution, float[,] heightMap, Vector3 heightmapScale,
                                  Transform buildingRoot)
     {
@@ -58,10 +61,19 @@ public class HeightMapModifier_Buildings : BaseHeightMapModifier
         }
 
         // Spawn the building
-        Vector3 buildingLocation = new Vector3(spawnY * heightmapScale.z, 
-                                               heightMap[spawnX, spawnY] * heightmapScale.y, 
+        Vector3 buildingLocation = new Vector3(spawnY * heightmapScale.z,
+                                               heightMap[spawnX, spawnY] * heightmapScale.y,
                                                spawnX * heightmapScale.x);
-        Instantiate(building.Prefab, buildingLocation, Quaternion.identity, buildingRoot);
+
+#if UNITY_EDITOR
+        var buildingGO = PrefabUtility.InstantiatePrefab(building.Prefab, buildingRoot) as GameObject;
+        buildingGO.transform.position = buildingLocation;
+        Undo.RegisterCreatedObjectUndo(buildingGO, "Spawn building");
+#else
+        var buildingGO = Instantiate(building.Prefab, buildingLocation, Quaternion.identity, buildingRoot);
+#endif
+
+        buildingGO.name = name;
     }
 
     public override void Execute(int mapResolution, float[,] heightMap, Vector3 heightmapScale, byte[,] biomeMap = null, int biomeIndex = -1, BiomeConfigSO biome = null)
@@ -76,7 +88,7 @@ public class HeightMapModifier_Buildings : BaseHeightMapModifier
                 int spawnX = Random.Range(building.Radius, mapResolution - building.Radius);
                 int spawnY = Random.Range(building.Radius, mapResolution - building.Radius);
 
-                SpawnBuilding(building, spawnX, spawnY, mapResolution, heightMap, heightmapScale, buildingRoot);
+                SpawnBuilding(building, $"{building.Prefab.name}_{(buildingIndex + 1)}", spawnX, spawnY, mapResolution, heightMap, heightmapScale, buildingRoot);
             }
         }
     }

@@ -9,6 +9,14 @@ public abstract class BaseGoal : MonoBehaviour
     public bool IsActive { get; protected set; } = false;
 
     protected BaseAction LinkedAction;
+    protected AIState LinkedAIState;
+    protected GOAPBrain LinkedBrain;
+
+    void Awake()
+    {
+        LinkedAIState = GetComponent<AIState>();
+        LinkedBrain = GetComponent<GOAPBrain>();
+    }
 
     public virtual void Wakeup() 
     {
@@ -34,5 +42,10 @@ public abstract class BaseGoal : MonoBehaviour
     public void Tick()
     {
         LinkedAction.Tick();
+    }
+
+    public virtual string GetDebugInfo()
+    {
+        return $"{GetType().Name}: Priority={Priority} CanRun={CanRun}";
     }
 }
